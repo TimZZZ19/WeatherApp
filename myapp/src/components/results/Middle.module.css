@@ -1,0 +1,10 @@
+.middle {
+  font-size: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.text {
+  margin-top: 0.6rem;
+}
