@@ -4,7 +4,11 @@ import { useState } from "react";
 import cities from "cities.json";
 
 const citySet = [];
-cities.forEach((city) => citySet.push(city.name.toLowerCase()));
+cities.forEach((city) => {
+  let processedCityName = city.name.toLowerCase();
+  if (processedCityName.includes("city"))
+    citySet.push(processedCityName.slice(0, -5));
+});
 
 const SearchBar = ({ location, setLocation, getWeatherData }) => {
   const [waringMsgShown, setWarningMsgShown] = useState(false);
@@ -12,7 +16,8 @@ const SearchBar = ({ location, setLocation, getWeatherData }) => {
     if (e.key !== "Enter" && e.target.getAttribute("id") !== "submit-btn")
       return;
 
-    if (citySet.includes(location.toLowerCase())) {
+    const userNetInput = location.toLowerCase().trim();
+    if (citySet.includes(userNetInput)) {
       getWeatherData();
     } else {
       setWarningMsgShown(true);
