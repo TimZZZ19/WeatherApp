@@ -6,6 +6,6 @@
   justify-content: space-evenly;
 }
 
-.text {
-  margin-top: 0.6rem;
+.text i {
+  font-size: 5.6rem;
 }
