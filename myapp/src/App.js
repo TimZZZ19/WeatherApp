@@ -10,7 +10,7 @@ function App() {
 
   const [currentWeatherData, setCurrentWeatherData] = useState({});
 
-  const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=60f4a693778a062a59f90441e674eb67`;
+  const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=60f4a693778a062a59f90441e674eb67`;
 
   const getWeatherData = () => {
     axios.get(currentWeatherUrl).then((response) => {
@@ -20,8 +20,6 @@ function App() {
     });
   };
 
-  console.log(currentWeatherData);
-
   return (
     <div className="background">
       <SearchBar
@@ -30,7 +28,7 @@ function App() {
         getWeatherData={getWeatherData}
       />
       {resultsShown ? (
-        <Results />
+        <Results currentWeatherData={currentWeatherData} />
       ) : (
         <div className="welcome-screen">
           <p className="welcome-msg">Welcome to WeatherApp!</p>
