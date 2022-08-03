@@ -13,11 +13,11 @@ function App() {
   const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=60f4a693778a062a59f90441e674eb67`;
 
   const getWeatherData = () => {
-    axios
-      .get(currentWeatherUrl)
-      .then((response) => setCurrentWeatherData(response.data));
-
-    setResultsShown(true);
+    axios.get(currentWeatherUrl).then((response) => {
+      setCurrentWeatherData(response.data);
+      setLocation("");
+      setResultsShown(true);
+    });
   };
 
   console.log(currentWeatherData);

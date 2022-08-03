@@ -34,3 +34,26 @@
   font-size: 2rem;
   cursor: pointer;
 }
+
+.search-bar::after {
+  content: "Please enter a valid city name";
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 150%;
+  left: 0;
+  font-size: 1.8rem;
+  color: #ff0000;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.4s;
+}
+
+.search-bar--invalid-input::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.search-bar--invalid-input input {
+  border: 0.1rem solid #ff0000;
+}
