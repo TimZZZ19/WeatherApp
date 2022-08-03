@@ -6,8 +6,9 @@ import cities from "cities.json";
 const citySet = [];
 cities.forEach((city) => {
   let processedCityName = city.name.toLowerCase();
-  if (processedCityName.includes("city"))
-    citySet.push(processedCityName.slice(0, -5));
+  if (processedCityName.slice(-4) === "city")
+    processedCityName = processedCityName.slice(0, -5);
+  citySet.push(processedCityName);
 });
 
 const SearchBar = ({ location, setLocation, getWeatherData }) => {
@@ -17,10 +18,10 @@ const SearchBar = ({ location, setLocation, getWeatherData }) => {
       return;
 
     const userNetInput = location.toLowerCase().trim();
-    if (citySet.includes(userNetInput)) {
-      getWeatherData();
-    } else {
+    if (!citySet.includes(userNetInput) || !location.length) {
       setWarningMsgShown(true);
+    } else {
+      getWeatherData();
     }
   };
 
