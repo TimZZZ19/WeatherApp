@@ -19,3 +19,13 @@
   height: 100%;
   z-index: -1;
 }
+
+.welcome-screen {
+  width: 80rem;
+  height: 65rem;
+  text-align: center;
+}
+
+.welcome-msg {
+  font-size: 4.8rem;
+}
