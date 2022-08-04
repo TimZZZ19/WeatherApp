@@ -9,20 +9,9 @@
   justify-content: space-around;
 }
 
-/* .background::before {
+.background::before {
   content: "";
-  background: url("./imgs/Ireland.jpg") center/cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-} */
-
-.bng-img {
-  background-position: center;
-  background-size: cover;
+  background: url("./imgs/honolulu.jpg") center/cover;
   position: absolute;
   top: 0;
   left: 0;
