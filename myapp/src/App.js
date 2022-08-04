@@ -22,6 +22,12 @@ function App() {
 
   return (
     <div className="background">
+      <div
+        className="bng-img"
+        style={{
+          backgroundImage: `url("https://www.livinginhawaii.com/wp-content/uploads/2017/08/honolulu-1124096.jpg")`,
+        }}
+      ></div>
       <SearchBar
         location={location}
         setLocation={setLocation}
