@@ -1,15 +1,28 @@
 import React from "react";
 import styles from "./Top.module.css";
 
-const Top = ({ tempUnit, setTempUnit }) => {
+const convertToFahrenheit = (celsius)  => celsius * 1.8 + 32;
+const convertToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
+
+const Top = ({name, temp, setTemp, feelsLike, setFeelsLike,tempUnit, setTempUnit, weather}) => {
   const handleTempUnit = (e) => {
-    setTempUnit(e.target.getAttribute("id"));
+    const clickedTempUnit = e.target.getAttribute("id");
+    if (clickedTempUnit === tempUnit) return;
+    setTempUnit(clickedTempUnit);
+
+    if (tempUnit === "imperial") {
+      setTemp(convertToCelsius(temp)); 
+      setFeelsLike(convertToCelsius(feelsLike));
+    } else {
+      setTemp(convertToFahrenheit(temp));
+      setFeelsLike(convertToFahrenheit(feelsLike));
+    }
   };
 
   return (
     <div className={styles.top}>
       <div className={styles["location-converter"]}>
-        <span className={styles.location}>Chicago</span>
+        <span className={styles.location}>{name}</span>
         <div className={styles.converter}>
           <button
             id="imperial"
@@ -28,8 +41,12 @@ const Top = ({ tempUnit, setTempUnit }) => {
         </div>
       </div>
       <div className={styles["temperature-weather-condition"]}>
-        <span className={styles.temperature}>81&#176;F</span>
-        <span className={styles["weather-condition"]}>Clear</span>
+        <span className={styles.temperature}>
+          {`${temp.toFixed(0)}`} 
+          &nbsp;&#176;
+          {`${tempUnit === "imperial"? 'F':'C'}`}
+          </span>
+        <span className={styles["weather-condition"]}>{weather}</span>
       </div>
     </div>
   );
