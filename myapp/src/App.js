@@ -9,7 +9,6 @@ function App() {
   const [resultsShown, setResultsShown] = useState(false);
 
   const [currentWeatherData, setCurrentWeatherData] = useState({});
-
   const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=60f4a693778a062a59f90441e674eb67`;
 
   const getWeatherData = () => {
@@ -28,7 +27,10 @@ function App() {
         getWeatherData={getWeatherData}
       />
       {resultsShown ? (
-        <Results currentWeatherData={currentWeatherData} />
+        <Results
+          currentWeatherData={currentWeatherData}
+          getWeatherData={getWeatherData}
+        />
       ) : (
         <div className="welcome-screen">
           <p className="welcome-msg">Welcome to WeatherApp!</p>
