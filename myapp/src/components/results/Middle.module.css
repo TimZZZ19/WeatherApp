@@ -13,3 +13,22 @@
 .text i {
   font-size: 5.6rem;
 }
+
+.clock {
+  width: 20rem;
+  height: 8rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 0.3rem;
+}
+
+.location-time {
+  font-size: 4.2rem;
+}
+
+.location-period {
+  font-size: 2.4rem;
+}

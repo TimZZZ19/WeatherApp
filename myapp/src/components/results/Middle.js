@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./Middle.module.css";
 
-const convertTime = (timestamp, locationTimeDiffToUTF) => {
-  const localTimeDiffToUTC = new Date().getTimezoneOffset() * 60;
+const localTimeDiffToUTC = new Date().getTimezoneOffset() * 60;
+
+const convertCutOffTime = (timestamp, locationTimeDiffToUTF) => {
   const time = new Date(
     (timestamp + localTimeDiffToUTC + locationTimeDiffToUTF) * 1000
   );
@@ -21,11 +22,21 @@ const convertTime = (timestamp, locationTimeDiffToUTF) => {
   return hoursString + ":" + minsString + " " + periodString;
 };
 
+const getCurrentTime = (locationTimeDiffToUTF) => {
+  const locationTime = new Date(
+    (Date.now() / 1000 + localTimeDiffToUTC + locationTimeDiffToUTF) * 1000
+  );
+
+  console.log(locationTime);
+};
+
 const Middle = ({
   sunriseTimestamp,
   sunsetTimestamp,
   locationTimeDiffToUTF,
 }) => {
+  getCurrentTime(locationTimeDiffToUTF);
+
   return (
     <div className={styles.middle}>
       <div className={styles.sunrise}>
@@ -33,16 +44,20 @@ const Middle = ({
           <i className="bi bi-sunrise"></i>
         </p>
         <span className={styles.time}>
-          {convertTime(sunriseTimestamp, locationTimeDiffToUTF)}
+          {convertCutOffTime(sunriseTimestamp, locationTimeDiffToUTF)}
         </span>
       </div>
-      <div className={styles.clock}></div>
+      <div className={styles.clock}>
+        <span className={styles["location-time"]}>11 : 00</span>
+        &nbsp;
+        <span className={styles["location-period"]}>am</span>
+      </div>
       <div className={styles.sunset}>
         <p className={styles.text}>
           <i className="bi bi-sunset"></i>
         </p>
         <span className={styles.time}>
-          {convertTime(sunsetTimestamp, locationTimeDiffToUTF)}
+          {convertCutOffTime(sunsetTimestamp, locationTimeDiffToUTF)}
         </span>
       </div>
     </div>
